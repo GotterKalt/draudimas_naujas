@@ -15,6 +15,7 @@
                 <th>Telefono nr.</th>
                 <th>El. paštas</th>
                 <th>Adresas</th>
+                <th>Automobiliai</th>
                 <th>Veiksmai</th>
             </tr>
             </thead>
@@ -28,9 +29,12 @@
                     <td>{{ $owner->email }}</td>
                     <td>{{ $owner->address }}</td>
                     <td>
+                        @foreach( $owner->cars as $car)
+                            {{ $car->reg_number }} <br>
+                        @endforeach
+                    </td>
+                    <td>
                         <a href="{{ route('owners.edit', $owner->id) }}" class="btn btn-primary">Redaguoti</a>
-
-
                         <form action="{{ route('owners.destroy', $owner->id) }}" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')

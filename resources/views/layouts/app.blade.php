@@ -33,9 +33,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('owners.index') }}">Savininkai</a>
                     </li>
-                    <!--<li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('cars.index') }}">Mašinos</a>
-                    </li>-->
+                    </li>
 
                 </ul>
 

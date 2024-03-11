@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
+use App\Models\Lecturer;
 use App\Models\Owner;
 use Illuminate\Http\Request;
 
@@ -9,9 +11,9 @@ class OwnerController extends Controller
 {
     public function index()
     {
-        $owners = Owner::all();
-
-        return view('owners.index', compact('owners'));
+        return view('owners.index',[
+            'owners'=>Owner::with('cars')-> get()
+        ]);
     }
 
     public function create()
@@ -21,40 +23,22 @@ class OwnerController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'surname' => 'required|max:255',
-            'phone' => 'required|numeric',
-            'email' => 'required|email|unique:owners',
-            'address' => 'required|max:255',
+        $owner=Owner::create($request->all());
+        $owner->save();
+        return redirect()->route('owners.index');
+    }
+    public function edit(Owner $owner)
+    {
+        return view('owners.edit', [
+            'owner'=>$owner
         ]);
-
-        $owner = Owner::create($validatedData);
-
-        return redirect()->route('owners.index')->with('success', 'Savininkas sekmingai pridėtas.');
     }
 
-    public function edit($id)
+    public function update(Request $request, Owner $owner)
     {
-        $owner = Owner::findOrFail($id);
-
-        return view('owners.edit', compact('owner'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'surname' => 'required|max:255',
-            'phone' => 'required|numeric',
-            'email' => 'required|email|unique:owners,email,' . $id,
-            'address' => 'required|max:255',
-        ]);
-
-        $owner = Owner::findOrFail($id);
-        $owner->update($validatedData);
-
-        return redirect()->route('owners.index')->with('success', 'Savininko duomenys atnaujinti.');
+        $owner->update($request->all());
+        $owner->save();
+        return redirect()->route('owners.index');
     }
 
     public function destroy($id)

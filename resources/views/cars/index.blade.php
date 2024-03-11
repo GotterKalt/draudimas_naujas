@@ -2,20 +2,20 @@
 
 @section('content')
     <div class="container">
-        <h2>Cars List</h2>
+        <h2>Automobiliu sarašas</h2>
 
-        <a href="{{ route('cars.create') }}" class="btn btn-info">Add a New Car</a>
+        <a href="{{ route('cars.create') }}" class="btn btn-success">Pridėti automobilį</a>
         <hr>
 
         <table class="table">
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Registration Number</th>
-                <th>Brand</th>
-                <th>Model</th>
-                <th>Owner ID</th>
-                <th>Actions</th>
+                <th>Registracijos numeris</th>
+                <th>Brendas</th>
+                <th>Modelis</th>
+                <th>Savininko ID</th>
+                <th>Veiksmai</th>
             </tr>
             </thead>
             <tbody>
@@ -27,8 +27,12 @@
                     <td>{{ $car->model }}</td>
                     <td>{{ $car->owner_id }}</td>
                     <td>
-                        <a href="{{ route('cars.edit', $car->id) }}" class="btn btn-primary">Edit</a>
-                        <!-- Add a button for deletion if needed -->
+                        <a href="{{ route('cars.edit', $car->id) }}" class="btn btn-primary">Redaguoti</a>
+                        <form action="{{ route('cars.destroy', $car->id) }}" method="POST" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this owner?')">Ištrinti</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
