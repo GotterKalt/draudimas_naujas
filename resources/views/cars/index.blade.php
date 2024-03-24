@@ -2,20 +2,20 @@
 
 @section('content')
     <div class="container">
-        <h2>Automobiliu sarašas</h2>
+        <h2>{{__("messages.carsList")}}</h2>
 
-        <a href="{{ route('cars.create') }}" class="btn btn-success">Pridėti automobilį</a>
+        <a href="{{ route('cars.create') }}" class="btn btn-success">{{__("Add new car")}}</a>
         <hr>
 
         <table class="table">
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Registracijos numeris</th>
-                <th>Brendas</th>
-                <th>Modelis</th>
-                <th>Savininko ID</th>
-                <th>Veiksmai</th>
+                <th>{{__("Licence plate number")}}</th>
+                <th>{{__("Car brand")}}</th>
+                <th>{{__("Model")}}</th>
+                <th>{{__("Owner ID")}}</th>
+                <th>{{__("Options")}}</th>
             </tr>
             </thead>
             <tbody>
@@ -27,11 +27,11 @@
                     <td>{{ $car->model }}</td>
                     <td>{{ $car->owner_id }}</td>
                     <td>
-                        <a href="{{ route('cars.edit', $car->id) }}" class="btn btn-primary">Redaguoti</a>
+                        <a href="{{ route('cars.edit', $car->id) }}" class="btn btn-primary">{{__("Edit")}}</a>
                         <form action="{{ route('cars.destroy', $car->id) }}" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this owner?')">Ištrinti</button>
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this owner?')">{{__("Delete")}}</button>
                         </form>
                     </td>
                 </tr>

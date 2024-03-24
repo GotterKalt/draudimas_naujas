@@ -1,0 +1,23 @@
+{
+    "Add new car": "Pridėti naują automobili",
+    "Edit car": "Redaguoti automobilį",
+    "Licence plate number": "Automobilio numeris",
+    "Car brand": "Brendas",
+    "Model": "Modelis",
+    "Owner": "Savininkas",
+    "Add": "Pridėti",
+    "Owner ID": "Savininko ID",
+    "Options": "Veiksmai",
+    "Edit": "Redaguoti",
+    "Delete": "Ištrinti",
+
+    "Add new owner": "Pridėti naują savininką",
+    "Edit owner": "Atnaujinti savininką",
+    "Name": "Vardas",
+    "Surname": "Pavardė",
+    "Phone number": "Telefono numeris",
+    "Email": "El. paštas",
+    "Adress": "Adresas",
+    "Owned cars": "Priklausomi automobiliai",
+    "Save": "Išsaugoti"
+}

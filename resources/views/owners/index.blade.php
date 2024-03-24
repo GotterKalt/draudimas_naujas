@@ -2,21 +2,21 @@
 
 @section('content')
     <div class="container">
-        <h2>Savininku sąrašas</h2>
+        <h2>{{__("messages.ownersList")}}</h2>
 
-        <a href="{{ route('owners.create') }}" class="btn btn-success">Pridėti naują sąvininką</a>
+        <a href="{{ route('owners.create') }}" class="btn btn-success">{{__("Add new owner")}}</a>
 
         <table class="table">
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Vardas</th>
-                <th>Pavardė</th>
-                <th>Telefono nr.</th>
-                <th>El. paštas</th>
-                <th>Adresas</th>
-                <th>Automobiliai</th>
-                <th>Veiksmai</th>
+                <th>{{__("Name")}}</th>
+                <th>{{__("Surname")}}</th>
+                <th>{{__("Phone number")}}</th>
+                <th>{{__("Email")}}</th>
+                <th>{{__("Adress")}}</th>
+                <th>{{__("Owned cars")}}</th>
+                <th>{{__("Options")}}</th>
             </tr>
             </thead>
             <tbody>
@@ -34,16 +34,17 @@
                         @endforeach
                     </td>
                     <td>
-                        <a href="{{ route('owners.edit', $owner->id) }}" class="btn btn-primary">Redaguoti</a>
+                        <a href="{{ route('owners.edit', $owner->id) }}" class="btn btn-primary">{{__("Edit")}}</a>
                         <form action="{{ route('owners.destroy', $owner->id) }}" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this owner?')">Ištrinti</button>
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this owner?')">{{__("Delete")}}</button>
                         </form>
                     </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
+
     </div>
 @endsection

@@ -6,11 +6,13 @@ use App\Models\Car;
 use App\Models\Lecturer;
 use App\Models\Owner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class OwnerController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        //App::setLocale('lt');
         return view('owners.index',[
             'owners'=>Owner::with('cars')-> get()
         ]);
