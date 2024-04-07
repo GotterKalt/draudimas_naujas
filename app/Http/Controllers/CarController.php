@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
-use App\Models\Course;
+use App\Http\Requests\CarRequest;
 use App\Models\Owner;
 use Illuminate\Http\Request;
 
@@ -27,7 +27,7 @@ class CarController extends Controller
         ]);
 
     }
-    public function store(Request $request)
+    public function store(CarRequest $request)
     {
         $car=Car::create($request->all());
         $car->save();

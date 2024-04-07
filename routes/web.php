@@ -3,6 +3,7 @@
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\ShortCodeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,7 @@ Route::resource('owners', OwnerController::class)->except(['edit', 'delete']);
 Route::middleware([ 'auth'])->group(function (){
     Route::resource('owners', OwnerController::class)->only(['edit', 'delete']);
     Route::resource('cars', CarController::class);
+    Route::resource('shortcode', ShortCodeController::class);
 });
 
 Route::post('/car/store', [CarController::class, 'store'])->name('car.store');

@@ -16,7 +16,7 @@ class Car extends Model
         'owner_id',
     ];
 
-    // Другие отношения и методы могут быть добавлены здесь
+
 
     public function owner()
     {

@@ -37,6 +37,9 @@
                         <a class="nav-link" href="{{ route('cars.index') }}">{{__("messages.carsList")}}</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('shortcode.index') }}">ShortCode</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('setLanguage', 'lt') }}">LT</a>
                     </li>
                     <li class="nav-item">

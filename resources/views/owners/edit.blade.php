@@ -15,15 +15,18 @@
 
                             <div class="mb-3">
                                 <label class="form-label">{{__("Name")}}</label>
-                                <input type="text" class="form-control" name="name" value="{{ $owner->name }}">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $owner->name }}">
+                                @error('name') {{$message}} @enderror
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">{{__("Surname")}}</label>
-                                <input type="text" class="form-control" name="surname" value="{{ $owner->surname }}">
+                                <input type="text" class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{ $owner->surname }}">
+                                @error('surname') {{$message}} @enderror
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">{{__("Phone number")}}</label>
-                                <input type="text" class="form-control" name="phone" value="{{ $owner->phone }}">
+                                <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ $owner->phone }}">
+                                @error('phone') {{$message}} @enderror
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">{{__("Email")}}</label>

@@ -5,6 +5,7 @@ namespace App\Http;
 use App\Http\Middleware\AdultMiddleware;
 use App\Http\Middleware\BugMiddleware;
 use App\Http\Middleware\LanguageMiddleware;
+use App\Http\Middleware\ShortCodeMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -40,6 +41,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             LanguageMiddleware::class,
+            ShortCodeMiddleware::class,
         ],
 
         'api' => [

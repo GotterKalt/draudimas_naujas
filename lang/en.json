@@ -1,3 +1,14 @@
 {
-
+    "Vardas yra privalomas": "Name is required",
+    "Vardas turi buti ilgesnis nei 2 simboliai": "Name must be longer than 2 characters",
+    "Vardas turi buti trumpesnis nei 16 simboliu": "Name must not exceed 16 characters",
+    "Vardas yra neteisingas": "Name is incorrect",
+    "Pavardė yra privaloma": "Surname is required",
+    "Pavardė turi buti ilgesne nei 2 simboliai": "Surname must be longer than 2 characters",
+    "Pavardė turi buti trumpesne nei 16 simboliu": "Surname must not exceed 16 characters",
+    "Pavardė yra neteisinga": "Surname is required",
+    "Telefono numeris yra privalomas": "Phone number is required",
+    "Telefono numeris užrašomas skaičiais": "Only numbers allowed in phone number",
+    "Leidžiamos tik 3 raidės ir 3 skaičiai": "Only 3 letters and 3 decimals are allowed",
+    "Mašinos numeris yra privalomas": "Car number is required"
 }

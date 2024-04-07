@@ -13,11 +13,19 @@
                             @csrf
                             <div class="mb-3">
                                 <label class="form-label">{{__("Licence plate number")}}</label>
-                                <input type="text" class="form-control" name="reg_number">
+                                <input type="text" class="form-control @error('reg_number') is-invalid @enderror" name="reg_number">
+                                @error('reg_number') {{$message}} @enderror
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">{{__("Car brand")}}</label>
-                                <input type="text" class="form-control" name="brand">
+                                <select name="brand" class="form-select">
+                                        <?php
+                                        $cars = array("Volvo", "BMW", "Toyota", "Honda", "Audi", "Volkswagen");
+                                        foreach ($cars as $car) {
+                                            echo "<option value='$car'>$car</option>";
+                                        }
+                                        ?>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">{{__("Model")}}</label>
