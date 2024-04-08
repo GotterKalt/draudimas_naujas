@@ -29,7 +29,8 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">{{__("Model")}}</label>
-                                <input type="text" class="form-control" name="model">
+                                <input type="text" class="form-control @error('model') is-invalid @enderror" name="model">
+                                @error('model') {{$message}} @enderror
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">{{__("Owner")}}</label>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OwnerRequest;
 use App\Models\Car;
 use App\Http\Requests\CarRequest;
 use App\Models\Owner;
@@ -36,11 +37,11 @@ class CarController extends Controller
     public function edit($id)
     {
         $car = Car::findOrFail($id);
-        $owners = Owner::all(); // Добавьте эту строку
+        $owners = Owner::all();
 
         return view('cars.edit', compact('car', 'owners'));
     }
-    public function update(Request $request, Car $car)
+    public function update(CarRequest $request, Car $car)
     {
         $car->update($request->all());
         $car->save();

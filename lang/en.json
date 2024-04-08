@@ -10,5 +10,6 @@
     "Telefono numeris yra privalomas": "Phone number is required",
     "Telefono numeris užrašomas skaičiais": "Only numbers allowed in phone number",
     "Leidžiamos tik 3 raidės ir 3 skaičiai": "Only 3 letters and 3 decimals are allowed",
-    "Mašinos numeris yra privalomas": "Car number is required"
+    "Mašinos numeris yra privalomas": "Car number is required",
+    "Nurodikyte modelį": "Model is required"
 }

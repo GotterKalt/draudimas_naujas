@@ -14,15 +14,24 @@
                             @method('put')
                             <div class="mb-3">
                                 <label class="form-label">{{__("Licence plate number")}}</label>
-                                <input type="text" class="form-control" name="reg_number" value="{{ $car->reg_number }}">
+                                <input type="text" class="form-control @error('reg_number') is-invalid @enderror" name="reg_number" value="{{ $car->reg_number }}">
+                                @error('reg_number') {{$message}} @enderror
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">{{__("Car brand")}}</label>
-                                <input type="text" class="form-control" name="brand" value="{{ $car->brand }}">
+                                <select name="brand" class="form-select">
+                                        <?php
+                                        $brands = array("Volvo", "BMW", "Toyota", "Honda", "Audi", "Volkswagen");
+                                        foreach ($brands as $brand) {
+                                            echo "<option value='$brand'>$brand</option>";
+                                        }
+                                        ?>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">{{__("Model")}}</label>
-                                <input type="text" class="form-control" name="model" value="{{ $car->model }}">
+                                <input type="text" class="form-control @error('model') is-invalid @enderror" name="model" value="{{ $car->model }}">
+                                @error('model') {{$message}} @enderror
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">{{__("Owner")}}</label>

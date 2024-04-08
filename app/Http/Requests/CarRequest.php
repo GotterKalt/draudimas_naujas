@@ -18,13 +18,15 @@ class CarRequest extends FormRequest
     {
         return [
             'reg_number'=>'required|regex:/^[A-Za-z]{3}\d{3}$/',
+            'model'=>'required'
         ];
     }
     public function messages()
     {
         return [
             'reg_number.regex'=>__('Leidžiamos tik 3 raidės ir 3 skaičiai'),
-            'reg_number.required'=>__('Mašinos numeris yra privalomas')
+            'reg_number.required'=>__('Mašinos numeris yra privalomas'),
+            'model.required'=>__('Nurodikyte modelį'),
         ];
     }
 }
