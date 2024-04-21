@@ -11,6 +11,7 @@
             <thead>
             <tr>
                 <th>ID</th>
+                <th>{{__("Photos")}}</th>
                 <th>{{__("Licence plate number")}}</th>
                 <th>{{__("Car brand")}}</th>
                 <th>{{__("Model")}}</th>
@@ -22,6 +23,12 @@
             @foreach ($cars as $car)
                 <tr>
                     <td>{{ $car->id }}</td>
+                    <td>
+                        @if($car->image_path != null)
+                            <img src="{{ asset('images/' . $car->image_path) }}" alt="" style="max-width: 100px; max-height: 100px; margin-right: 10px;">
+                        @else {{__("None")}}
+                        @endif
+                    </td>
                     <td>{{ $car->reg_number }}</td>
                     <td>{{ $car->brand }}</td>
                     <td>{{ $car->model }}</td>

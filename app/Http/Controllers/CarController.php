@@ -23,6 +23,7 @@ class CarController extends Controller
     }
     public function create()
     {
+
         return view('cars.create', [
             'owners'=>Owner::all()
         ]);
@@ -30,9 +31,22 @@ class CarController extends Controller
     }
     public function store(CarRequest $request)
     {
-        $car=Car::create($request->all());
+
+        $newImageName = time() . '-' . $request->reg_number . '.' . $request->photo->extension();
+        $request->photo->extension();
+        $request->photo->move(public_path('images'), $newImageName);
+
+
+        $car=Car::create([
+            'image_path' => $newImageName,
+            'reg_number' => $request->input('reg_number'),
+            'brand' => $request->input('brand'),
+            'model' => $request->input('model'),
+            'owner_id' => $request->input('owner_id')
+        ]);
         $car->save();
         return redirect()->route('cars.index');
+
     }
     public function edit($id)
     {

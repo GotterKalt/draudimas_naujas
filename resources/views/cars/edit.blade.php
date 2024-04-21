@@ -43,6 +43,11 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="mb-3">
+                                <label class="form-label">{{__("Photos")}}</label>
+                                <input type="file" class="form-control @error('photo') is-invalid @enderror" name="photo">
+                                @error('photo') {{$message}} @enderror
+                            </div>
                             <button class="btn btn-success">{{__("Save")}}</button>
                         </form>
                     </div>

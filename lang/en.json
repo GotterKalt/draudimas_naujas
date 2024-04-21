@@ -11,5 +11,7 @@
     "Telefono numeris užrašomas skaičiais": "Only numbers allowed in phone number",
     "Leidžiamos tik 3 raidės ir 3 skaičiai": "Only 3 letters and 3 decimals are allowed",
     "Mašinos numeris yra privalomas": "Car number is required",
-    "Nurodikyte modelį": "Model is required"
+    "Nurodikyte modelį": "Model is required",
+    "Nuotraukos palaikomi formatai: jpg, png, jpeg": "Supported photo formats: jpg, png, jpeg",
+    "Nuotraukos maksimalus dydis: 5048 kB": "Maximum size of a photo: 5048 kB"
 }

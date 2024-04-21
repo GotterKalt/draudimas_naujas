@@ -9,7 +9,7 @@
                         {{__("Edit owner")}}
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('owners.update', $owner->id) }}">
+                        <form method="post" action="{{ route('owners.update', $owner->id) }}" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
