@@ -9,7 +9,7 @@
                         {{__("Add new car")}}
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('cars.store') }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('cars.save') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <label class="form-label">{{__("Licence plate number")}}</label>
@@ -42,7 +42,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">{{__("Photos")}}</label>
-                                <input type="file" class="form-control @error('photo') is-invalid @enderror" name="photo[]" multiple>
+                                <input type="file" class="form-control @error('photo') is-invalid @enderror" name="photo">
                                 @error('photo') {{$message}} @enderror
                             </div>
 

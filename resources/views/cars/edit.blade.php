@@ -9,7 +9,7 @@
                         {{__("Edit car")}}
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('cars.update', $car) }}">
+                        <form method="post" action="{{ route('cars.update', $car) }}" enctype="multipart/form-data">
                             @csrf
                             @method('put')
                             <div class="mb-3">
@@ -43,6 +43,13 @@
                                     @endforeach
                                 </select>
                             </div>
+                            @if($car->image_path != null)
+                            <div class="mb-3 alert alert-info">
+                                Fotografija: <img src="{{ asset('images/' . $car->image_path) }}" alt="" style="max-width: 100px; max-height: 100px; margin-right: 10px;">
+                                <a href="{{route('cars.photoDelete', $car->id)}}" class="btn btn-danger btn-sm"> <span class="delete-photo" style="cursor: pointer;">&#10006;</span> Istrinti</a>
+
+                            </div>
+                            @endif
                             <div class="mb-3">
                                 <label class="form-label">{{__("Photos")}}</label>
                                 <input type="file" class="form-control @error('photo') is-invalid @enderror" name="photo">

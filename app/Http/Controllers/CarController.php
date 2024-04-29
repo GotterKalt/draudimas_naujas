@@ -17,9 +17,11 @@ class CarController extends Controller
     //}
     public function index()
     {
+        //dd('Reached CarController@index');
         return view('cars.index',[
             'cars'=>Car::with('owner')->get()
         ]);
+
     }
     public function create()
     {
@@ -29,24 +31,27 @@ class CarController extends Controller
         ]);
 
     }
-    public function store(CarRequest $request)
+
+    //public function document($owner_id){
+    //    $owner=$owner::find($owner_id);
+    //    return response()->download(storage_path(). "/app/images".$car->photo);
+    //}
+
+    public function save(CarRequest $request, Car $car)
     {
+        $car->reg_number = $request->reg_number;
+        $car->brand = $request->brand;
+        $car->model = $request->model;
+        $car->owner_id = $request->owner_id;
 
-        $newImageName = time() . '-' . $request->reg_number . '.' . $request->photo->extension();
-        $request->photo->extension();
-        $request->photo->move(public_path('images'), $newImageName);
-
-
-        $car=Car::create([
-            'image_path' => $newImageName,
-            'reg_number' => $request->input('reg_number'),
-            'brand' => $request->input('brand'),
-            'model' => $request->input('model'),
-            'owner_id' => $request->input('owner_id')
-        ]);
+        if ($request->hasFile('photo')) {
+            $photo = $request->file('photo');
+            $newImageName = time() . '-' . $request->reg_number . '.' . $photo->getClientOriginalExtension();
+            $photo->move(public_path('images'), $newImageName);
+            $car->image_path = $newImageName;
+        }
         $car->save();
         return redirect()->route('cars.index');
-
     }
     public function edit($id)
     {
@@ -57,7 +62,17 @@ class CarController extends Controller
     }
     public function update(CarRequest $request, Car $car)
     {
-        $car->update($request->all());
+        $car->reg_number = $request->reg_number;
+        $car->brand = $request->brand;
+        $car->model = $request->model;
+        $car->owner_id = $request->owner_id;
+
+        if ($request->hasFile('photo')) {
+            $photo = $request->file('photo');
+            $newImageName = time() . '-' . $request->reg_number . '.' . $photo->getClientOriginalExtension();
+            $photo->move(public_path('images'), $newImageName);
+            $car->image_path = $newImageName;
+        }
         $car->save();
         return redirect()->route('cars.index');
     }
@@ -65,5 +80,24 @@ class CarController extends Controller
     {
         $car->delete();
         return redirect()->route('cars.index');
+    }
+
+    public function photoDelete($id)
+    {
+        $car = Car::findOrFail($id);
+
+        if ($car->image_path) {
+            unlink(public_path('images/' . $car->image_path));
+            $car->image_path = null;
+            $car->save();
+        }
+
+        return redirect()->route('cars.edit', $car->id);
+    }
+    public function specific($id, Car $car){
+        $car=Car::find($id);
+        return view('cars.specific', [
+            "car"=>$car
+        ]);
     }
 }

@@ -9,13 +9,13 @@ class Car extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'reg_number',
-        'brand',
-        'model',
-        'owner_id',
-        'image_path'
-    ];
+    //protected $fillable = [
+    //    'reg_number',
+    //   'brand',
+    ///    'model',
+     //   'owner_id',
+     //   'image_path'
+   // ];
 
 
 
