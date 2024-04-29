@@ -43,16 +43,32 @@
                                     @endforeach
                                 </select>
                             </div>
-                            @if($car->image_path != null)
-                            <div class="mb-3 alert alert-info">
-                                Fotografija: <img src="{{ asset('images/' . $car->image_path) }}" alt="" style="max-width: 100px; max-height: 100px; margin-right: 10px;">
-                                <a href="{{route('cars.photoDelete', $car->id)}}" class="btn btn-danger btn-sm"> <span class="delete-photo" style="cursor: pointer;">&#10006;</span> Istrinti</a>
-
-                            </div>
+                            @if($car->images!=null)
+                                <label class="form-label">{{__("Photos")}}</label>
+                                @foreach($car->images as $image)
+                                    <div class="mb-3 alert alert-info">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="card text-black bg-secondary mb-3" style="max-width: 20rem;">
+                                                    <div class="card-body">
+                                                        <img src="{{ asset('images/' . $image->image) }}" class="card-img-top" style="max-width: 100px; max-height: 100px;">
+                                                        <a href="{{ route('cars.photoDelete', $image->id) }}" class="btn btn-danger btn-sm mt-2"><span class="delete-photo" style="cursor: pointer;">&#10006;</span> {{__("Delete")}}</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                        @endforeach
+                                    </div>
+                                </div>
                             @endif
                             <div class="mb-3">
-                                <label class="form-label">{{__("Photos")}}</label>
-                                <input type="file" class="form-control @error('photo') is-invalid @enderror" name="photo">
+                                <label class="form-label">{{__("Upload new photos")}}</label>
+                                <input type="file"
+                                       class="form-control @error('photo') is-invalid @enderror"
+                                       name="images[]"
+                                       accept="image/*"
+                                       multiple>
                                 @error('photo') {{$message}} @enderror
                             </div>
                             <button class="btn btn-success">{{__("Save")}}</button>

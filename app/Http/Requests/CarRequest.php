@@ -19,7 +19,7 @@ class CarRequest extends FormRequest
         return [
             'reg_number'=>'required|regex:/^[A-Za-z]{3}\d{3}$/',
             'model'=>'required',
-            'photo'=>'max:5048'
+            'photo'=>'max:5048|mimes:jpg,jpeg,png'
         ];
     }
     public function messages()

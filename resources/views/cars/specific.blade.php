@@ -11,11 +11,22 @@
             <tbody>
             <tr>
 
-                <div>{{__("Photos")}}:
-                    @if($car->image_path != null)
-                        <img src="{{ asset('images/' . $car->image_path) }}" alt="" style="max-width: 100px; max-height: 100px; margin-right: 10px;">
+                    <h2>{{__("Photos")}}: </h2>
+                <div class="row mt-4">
+                    @if($car->images != null)
+                        @foreach($images as $image)
+                            <div class="col-md-3">
+                                <div class="card text-black bg-secondary mb-3" style="max-width: 20rem;">
+                                    <div class="card-body">
+                                        <img src="/images/{{$image->image}}" class="card-img-top">
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
                     @else {{__("None")}}
                     @endif</div>
+
+
                 <div>ID:
                     {{ $car->id }}</div>
                 <div>{{__("Licence plate number")}}: {{ $car->reg_number }}</div>

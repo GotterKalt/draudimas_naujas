@@ -42,11 +42,16 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">{{__("Photos")}}</label>
-                                <input type="file" class="form-control @error('photo') is-invalid @enderror" name="photo">
+                                <input
+                                    type="file"
+                                    class="form-control @error('photo') is-invalid @enderror"
+                                    name="images[]"
+                                    accept="image/*"
+                                    multiple>
                                 @error('photo') {{$message}} @enderror
                             </div>
 
-                            <button class="btn btn-success">{{__("Add")}}</button>
+                            <button type="submit" class="btn btn-success">{{__("Add")}}</button>
                         </form>
                     </div>
                 </div>
