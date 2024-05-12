@@ -16,7 +16,7 @@
                             <div class="col-md-3">
                                 <div class="card text-black bg-secondary mb-3" style="max-width: 20rem;">
                                     <div class="card-body">
-                                        <img src="/images/{{$image->image}}" class="card-img-top">
+                                        <img src="/images/{{$image->image}}" class="card-img-top" style="max-width: 100%; height: auto;">
                                     </div>
                                 </div>
                             </div>
@@ -41,12 +41,16 @@
 
             <div>
                 <div class="btn-group">
+                    @can('update', $car->owner, $car)
                     <a href="{{ route('cars.edit', $car->id) }}" class="btn btn-primary">{{__("Edit")}}</a>
+                    @endcan
+                    @can('delete', $car->owner, $car)
                     <form action="{{ route('cars.destroy', $car->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this owner?')">{{__("Delete")}}</button>
                     </form>
+                        @endcan
                 </div>
             </div>
         </div>

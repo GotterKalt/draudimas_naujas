@@ -12,18 +12,18 @@ use Illuminate\Http\Request;
 class CarController extends Controller
 {
 
-    //public function __construct()
-    //{
-    //    $this->middleware('auth');
-    //}
+    public function __construct(){
+        $this->authorizeResource(Car::class, 'car');
+    }
     public function index()
     {
-        //dd('Reached CarController@index');
+        $carsWithOwners = Car::all();
+        $owners = Owner::all();
 
-        return view('cars.index',[
-            'cars'=>Car::with('owner')->get()
+        return view('cars.index', [
+            'cars' => $carsWithOwners,
+            'owners' => $owners,
         ]);
-
     }
     public function create()
     {
@@ -113,11 +113,17 @@ class CarController extends Controller
 
         return redirect()->route('cars.edit', $image->car_id);
     }
-    public function specific($id, Car $car){
+    public function specific($id, Car $car, Request $request){
+
+
+
+
+
         $car=Car::find($id);
         return view('cars.specific', [
             "car"=>$car,
-            "images"=>$car->images
+            "images"=>$car->images,
+            'owner' => $request->owner
         ]);
     }
     public function images($id){

@@ -19,8 +19,10 @@
                 <th>{{__("Options")}}</th>
             </tr>
             </thead>
-            <tbody>
             @foreach ($owners as $owner)
+                @can('view', $owner)
+            <tbody>
+
                 <tr>
                     <td>{{ $owner->id }}</td>
                     <td>{{ $owner->name }}</td>
@@ -34,16 +36,22 @@
                         @endforeach
                     </td>
                     <td>
+                        @can('update', $owner)
                         <a href="{{ route('owners.edit', $owner->id) }}" class="btn btn-primary">{{__("Edit")}}</a>
+                        @endcan
+                        @can('delete', $owner)
                         <form action="{{ route('owners.destroy', $owner->id) }}" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this owner?')">{{__("Delete")}}</button>
+                            @endcan
                         </form>
                     </td>
                 </tr>
-            @endforeach
+
             </tbody>
+                @endcan
+            @endforeach
         </table>
 
     </div>

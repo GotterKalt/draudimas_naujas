@@ -15,8 +15,16 @@
             <td>{{__("Show details")}}</td>
             </thead>
             <tbody>
-            @forelse ($cars as $car)
-                <tr onclick="window.location='{{ route('cars.specific', $car->id) }}';" style="cursor: pointer;">
+
+
+
+                    @foreach ($cars as $car)
+
+                @can('view', $car->owner, $car)
+                    <script>
+                        console.log("allowed");
+                    </script>
+                <tr onclick="window.location='{{ route('cars.specific', $car->id, $car->owner) }}';" style="cursor: pointer;">
 
                     <td>
 
@@ -31,11 +39,14 @@
                         <a href="{{ route('cars.specific', $car->id) }}"class="btn btn-primary">{{__("Show details")}}</a>
                     </td>
                 </tr>
-            @empty
-                <tr>
-                    <td colspan="5" class="text-center">No cars yet</td>
-                </tr>
-            @endforelse
+                @endcan
+                    @endforeach
+
+                @if ($cars->isEmpty())
+                    <tr>
+                        <td colspan="4" class="text-center">{{__("No cars yet")}}</td>
+                    </tr>
+                @endif
             </tbody>
         </table>
     </div>
