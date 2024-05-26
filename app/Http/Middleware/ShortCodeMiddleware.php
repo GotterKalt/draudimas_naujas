@@ -18,8 +18,7 @@ class ShortCodeMiddleware
     {
         $response = $next($request);
         $content = $response->getContent();
-       // preg_match_all("/\[\[ShortCode\]\]/", $content, $matches);
-        //$uniqueShortCodes = array_unique($matches[0]);
+
 
         foreach (ShortCode::all() as $shortCode) {
 

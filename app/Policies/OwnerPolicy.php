@@ -55,13 +55,14 @@ class OwnerPolicy
      */
     public function delete(User $user, Owner $owner): bool
     {
+        //\Log::info('Delete attempt', ['user_id' => $user->id, 'owner_user_id' => $owner->user_id, 'user_type' => $user->type]);
         if($owner->user_id == $user->id && $user->type == 1 || $user->type == 3){
             return true;
         }
         if($owner->user_id == $user->id && $user->type == 2){
             return true;
         }
-        else return true;
+        else return false;
     }
 
     /**

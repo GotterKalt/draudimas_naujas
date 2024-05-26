@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 use App\Models\User;
+use App\Models\Car;
 use App\Models\Owner;
 use App\Policies\OwnerPolicy;
+use App\Policies\CarPolicy;
 use Illuminate\Support\Facades\Gate;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -16,8 +18,10 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        Owner::class=>OwnerPolicy::class
+        Owner::class=>OwnerPolicy::class,
+        Car::class=>CarPolicy::class
     ];
+
 
     /**
      * Register any authentication / authorization services.
@@ -33,14 +37,14 @@ class AuthServiceProvider extends ServiceProvider
                 return true;
             }
         });
-        //Gate::define('delete_owner', function(User $user, Owner $owner){
-        //    if($owner->user_id == $user->id && $user->type == 1|| $user->type == 3){
-        //        return true;
-        //    }
-        //    elseif($owner->user_id == $user->id && $user->type == 2){
-        //        return true;
-        //    }
-
-        //});
+        Gate::define('delete_owner', function(User $user, Owner $owner){
+            if($owner->user_id == $user->id && $user->type == 1|| $user->type == 3){
+                return true;
+            }
+            elseif($owner->user_id == $user->id && $user->type == 2){
+                return true;
+            }
+            return true;
+        });
     }
 }

@@ -20,10 +20,11 @@ class CarPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Owner $owner, Car $car): bool
+    public function view(User $user,  Car $car): bool
     {
-        if ($user->type == 1 && $car->owner_id == $owner->id) return true;
-        elseif ($user->type == 2 && $car->owner_id == $owner->id || $user->type == 3) return true;
+        if ($car->owner->user_id == $user->id) return true;
+        //dd($car->owner->user_id, " == ", $user->id);
+        elseif ($user->type == 2 || $user->type == 3) return true;
         else return false;
     }
 
@@ -39,20 +40,18 @@ class CarPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Owner $owner, Car $car): bool
+    public function update(User $user, Car $car): bool
     {
-        if ($user->type == 1 && $car->owner_id == $owner->id) return true;
-        elseif ($user->type == 2 && $car->owner_id == $owner->id || $user->type == 3) return true;
+        if ($car->owner->user_id == $user->id || $user->type == 3) return true;
         else return false;
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Owner $owner, Car $car): bool
+    public function delete(User $user, Car $car): bool
     {
-        if ($user->type == 1 && $car->owner_id == $owner->id) return true;
-        elseif ($user->type == 2 && $car->owner_id == $owner->id || $user->type == 3) return true;
+        if ($car->owner->user_id == $user->id || $user->type == 3) return true;
         else return false;
     }
 }

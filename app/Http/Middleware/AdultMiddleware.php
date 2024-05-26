@@ -22,6 +22,7 @@ class AdultMiddleware
         if ($request->user()->age < 18){
             return redirect()->route('owners.index');
         }
+
         return $next($request);
     }
 }

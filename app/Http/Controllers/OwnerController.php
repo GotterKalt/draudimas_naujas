@@ -22,24 +22,7 @@ class OwnerController extends Controller
         ]);
     }
 
-    /*private $validationRules=[
-        'name'=>'required|min:3|max:15',
-        'surname'=>'required|min:3|max:15',
-        'phone'=>'required',
-    ];*/
-    //private $validationMessages;
 
-    /*public function __construct()
-    {
-        $this->validationMessages=[
-            'name.required'=>__('Vardas yra privalomas'),
-            'name.min'=>__('Vardas turi buti ilgesnis nei 2 simboliai'),
-            'name.max'=>__('Vardas turi buti trumpesnin nei 16 simboliu'),
-            'name'=>__('Vardas yra neteisingas'),
-            'surname'=>__('Pavardė yra privalomas ir turi buti nuo 3 iki 15 simboliu'),
-            'phone'=>__('Telefono numeris yra privalomas')
-        ];
-    }*/
 
     public function create()
     {
@@ -48,19 +31,7 @@ class OwnerController extends Controller
 
     public function store(OwnerRequest $request)
     {
-        /*$request->validate([
-            'name'=>'required|min:3|max:15',
-            'surname'=>'required|min:3|max:15',
-            'phone'=>'required',
-        ],[
-            'name.required'=>__('Vardas yra privalomas'),
-            'name.min'=>__('Vardas turi buti ilgesnis nei 2 simboliai'),
-            'name.max'=>__('Vardas turi buti trumpesnin nei 16 simboliu'),
-            'name'=>__('Vardas yra neteisingas'),
-            'surname'=>__('Pavardė yra privalomas ir turi buti nuo 3 iki 15 simboliu'),
-            'phone'=>__('Telefono numeris yra privalomas')
-        ]);*/
-        //$request->validate($this->validationRules, $this->validationMessages);
+
 
         $owner=Owner::create($request->all());
         $owner->user_id = $request->user()->id;
@@ -69,9 +40,9 @@ class OwnerController extends Controller
     }
     public function edit(Owner $owner,Request $request, User $user)
     {
-        if(!$request->user()->can('edit_owner',$owner)){
+        /*if(!$request->user()->can('edit_owner',$owner)){
             return redirect()->route('owners.index');
-        }
+        }*/
         return view('owners.edit', [
             'owner'=>$owner
         ]);
@@ -87,9 +58,9 @@ class OwnerController extends Controller
 
     public function destroy($id, Request $request)
     {
-        //if(!$request->user()->can('delete_owner')){
-        //    return redirect()->route('owners.index');
-        //}
+        /*if(!$request->user()->can('delete_owner')){
+            return redirect()->route('owners.index');
+        }*/
         $owner = Owner::findOrFail($id);
         $owner->delete();
 

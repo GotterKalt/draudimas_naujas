@@ -20,7 +20,7 @@
 
                     @foreach ($cars as $car)
 
-                @can('view', $car->owner, $car)
+                @can('view', $car)
                     <script>
                         console.log("allowed");
                     </script>

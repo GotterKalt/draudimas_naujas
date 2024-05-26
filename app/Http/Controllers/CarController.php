@@ -64,6 +64,7 @@ class CarController extends Controller
     public function edit($id)
     {
         $car = Car::findOrFail($id);
+        //$this->authorize('update', $car);
         $owners = Owner::all();
 
         return view('cars.edit', compact('car', 'owners'));
@@ -90,8 +91,9 @@ class CarController extends Controller
 
         return redirect()->route('cars.index');
     }
-    public function destroy(Car $car)
+    public function destroy(Owner $owner, Car $car)
     {
+        //$this->authorize('delete', $car); // Проверяем разрешение на удаление машины
         foreach($car->images as $image){
             if(file_exists(public_path('images/'.$image->image))){
                 unlink(public_path('images/'.$image->image));

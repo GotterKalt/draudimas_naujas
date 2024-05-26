@@ -41,14 +41,14 @@
 
             <div>
                 <div class="btn-group">
-                    @can('update', $car->owner, $car)
+                    @can('update', $car)
                     <a href="{{ route('cars.edit', $car->id) }}" class="btn btn-primary">{{__("Edit")}}</a>
                     @endcan
-                    @can('delete', $car->owner, $car)
+                    @can('delete', $car)
                     <form action="{{ route('cars.destroy', $car->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this owner?')">{{__("Delete")}}</button>
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this car?')">{{__("Delete")}}</button>
                     </form>
                         @endcan
                 </div>
